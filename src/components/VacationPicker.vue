@@ -2,16 +2,7 @@
   <div>
     <h2>Kies je vakantie</h2>
     <div class="row">
-      <div class="col-6">
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button class="btn btn-success" v-bind:disabled="isBackDisabled" v-on:click="prevClick()">« Vorige</button>
-          <button class="btn btn-success" v-bind:disabled="true">{{ chosenCountry.id + 1 }}</button>
-          <button class="btn btn-success" v-bind:disabled="isNextDisabled" v-on:click="nextClick()">Volgende »</button>
-        </div>
-        <br><br>
-        <button class="btn btn-primary" v-on:click="toggleDetails()">{{ showChosenCountryButtonText }}</button>
 
-      </div>
 
       <div class="col-6">
         <ul class="list-group">
@@ -34,13 +25,24 @@
         </ul>
       </div>
     </div>
+    <div class="col-6">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button class="btn btn-danger" v-bind:disabled="isBackDisabled" v-on:click="prevClick()">« Vorige</button>
+      <button class="btn btn-success" v-bind:disabled="isNextDisabled" v-on:click="nextClick()">Volgende »</button>
+    </div>
+    <br><br>
+    <button class="btn btn-warning" v-on:click="toggleDetails()">{{ showChosenCountryButtonText }}</button>
+
+  </div>
   </div>
 </template>
 
 <script>
+import mixins from "@/mixins/mixins";
 import countryData from '@/data/countryData'
 export default {
   name: 'VacationPicker',
+  mixins: [mixins],
   data() {
     //hier zijn mijn varables
     return {
@@ -78,11 +80,7 @@ export default {
     setCountry(country) {
       this.chosenCountry = country;
     },
-    getImgUrl(img) {
-      console.log(img);
-      return require('../assets/countries/' + img);
-      //de mixins lukte niet
-    }
+
   }
 }
 </script>
